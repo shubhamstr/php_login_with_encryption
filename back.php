@@ -1,5 +1,6 @@
 <?php
 
+include './constants.php';
 include './config.php';
 
 if(isset($_POST['register'])){
@@ -87,8 +88,8 @@ if(isset($_POST['forgot_pass'])){
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
         // More headers
-        $headers .= 'From: <shubhamsutartesting@gmail.com>' . "\r\n";
-        $headers .= 'Cc: shubhamsutar5799@gmail.com' . "\r\n";
+        $headers .= 'From: '.SEND_EMAIL_FROM . "\r\n";
+        $headers .= 'Cc: '.SEND_EMAIL_CC . "\r\n";
 
         if(mail($to,$subject,$message,$headers)){
             header("location: forgot_password.php?success=1&mailsent");
