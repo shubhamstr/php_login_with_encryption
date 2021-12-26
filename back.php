@@ -14,16 +14,17 @@ if(isset($_POST['register'])){
     $users_count = mysqli_num_rows($users_result);
     if($users_count > 0){
         header("location: register.php?error=1");
-    }
-    
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-   echo $users_sql = "INSERT INTO `users`(`username`,`email`,`password`,`cpassword`)VALUES('$username','$email','$hashed_password','$hashed_password')";
-    $users_result = mysqli_query($con,$users_sql);
-    if($users_result){
-        header("location: register.php?insert=1");
     }else{
-        header("location: register.php?error=2");
+    
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    
+        $users_sql = "INSERT INTO `users`(`username`,`email`,`password`,`cpassword`)VALUES('$username','$email','$hashed_password','$hashed_password')";
+        $users_result = mysqli_query($con,$users_sql);
+        if($users_result){
+            header("location: register.php?insert=1");
+        }else{
+            header("location: register.php?error=2");
+        }
     }
                     
 }
