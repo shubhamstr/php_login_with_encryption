@@ -27,6 +27,7 @@
                 <div class="text-center">
                     <input type="hidden" name="login">
                     <p>Dont have an account? <a href="register.php">Click to Register</a> </p>
+                    <p>Forgot Password? <a href="forgot_password.php">Click to Reset</a> </p>
                     <input type="button" value="Login" class="btn btn-primary" id="login">
                 </div>
             </form>

@@ -53,5 +53,50 @@ if(isset($_POST['login'])){
                     
 }
 
+
+
+if(isset($_POST['reset'])){
+    $email = $_POST['email'];
+
+    
+    $users_sql = "SELECT * FROM `users` WHERE `email`='$email'";
+    $users_result = mysqli_query($con,$users_sql);
+    $users_count = mysqli_num_rows($users_result);
+    $users_row = mysqli_fetch_array($users_result);
+    if($users_count > 0){
+            
+        $to = "$email";
+        $subject = "Password Reset";
+
+        $message = '
+        <html>
+        <head>
+        <title>Password Reset</title>
+        </head>
+        <body>
+        <p>click to reset your password!</p>
+        <a href="reset_password.php?email='.$email.'">Reset Password</a>
+        </body>
+        </html>
+        ';
+
+        // Always set content-type when sending HTML email
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+        // More headers
+        $headers .= 'From: <shubhamsutartesting@gmail.com>' . "\r\n";
+        $headers .= 'Cc: shubhamsutar5799@gmail.com' . "\r\n";
+
+        if(mail($to,$subject,$message,$headers)){
+            header("location: forgot_password.php?success=1&mailsent");
+        }else{
+            header("location: forgot_password.php?success=1&mailerr");
+        }
+    }else{
+        header("location: forgot_password.php?success=1");
+    }
+                    
+}
 ?>
                 
