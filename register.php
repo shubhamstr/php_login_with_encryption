@@ -38,6 +38,7 @@
                 </div>
                 <div class="text-center">
                     <input type="hidden" name="register">
+                    <p>Already have an account? <a href="login.php">Click to Login</a> </p>
                     <input type="button" value="Register" class="btn btn-primary" id="register">
                 </div>
             </form>
