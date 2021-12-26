@@ -12,7 +12,7 @@ if(isset($_GET['email'])){
         session_start(); 
         $_SESSION['username'] = $users_row['username'];
     }
-}else if(isset($_GET['reset_pass'])){
+}else if(isset($_GET['reset_pass']) || isset($_GET['success']) || isset($_GET['error'])){
     include './session.php'; 
 }else{
     header('location: login.php');
@@ -46,6 +46,7 @@ if(isset($_GET['email'])){
                     <span class="text-danger" style="font-size:15px;"></span>
                 </div>
                 <div class="text-center">
+                    <input type="hidden" name="email" value="<?php echo $_GET['email']; ?>">
                     <input type="hidden" name="reset_pass">
                     <p>Go Back <a href="login.php">Login Page</a> </p>
                     <input type="button" value="Update Password" class="btn btn-primary" id="reset">

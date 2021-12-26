@@ -100,5 +100,22 @@ if(isset($_POST['forgot_pass'])){
     }
                     
 }
+
+if(isset($_POST['reset_pass'])){
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $cpassword = $_POST['cpassword'];
+
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    
+   echo $users_sql = "UPDATE `users` SET `password`='$hashed_password', `cpassword`='$hashed_password' WHERE `email`='$email'";
+    $users_result = mysqli_query($con,$users_sql);
+    if($users_result){
+        header("location: reset_password.php?success=1");
+    }else{
+        header("location: reset_password.php?error=1");
+    }
+                    
+}
 ?>
                 
