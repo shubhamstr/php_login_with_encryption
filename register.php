@@ -37,7 +37,8 @@
                     <span class="text-danger" style="font-size:15px;"></span>
                 </div>
                 <div class="text-center">
-                    <input type="button" value="Register" class="btn btn-primary" id="register" name="register">
+                    <input type="hidden" name="register">
+                    <input type="button" value="Register" class="btn btn-primary" id="register">
                 </div>
             </form>
         </div>
