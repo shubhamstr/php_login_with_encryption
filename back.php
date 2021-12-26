@@ -29,5 +29,27 @@ if(isset($_POST['register'])){
                     
 }
 
+
+if(isset($_POST['login'])){
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    
+    $users_sql = "SELECT * FROM `users` WHERE `email`='$email'";
+    $users_result = mysqli_query($con,$users_sql);
+    $users_count = mysqli_num_rows($users_result);
+    $users_row = mysqli_fetch_array($users_result);
+    if($users_count > 0){
+        if(password_verify($password, $users_row['password'])){
+            header("location: welcome.php?success=1");
+        }else{
+            header("location: login.php?error=2");
+        }
+    }else{
+        header("location: login.php?error=1");
+    }
+                    
+}
+
 ?>
                 
