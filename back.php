@@ -41,6 +41,8 @@ if(isset($_POST['login'])){
     $users_row = mysqli_fetch_array($users_result);
     if($users_count > 0){
         if(password_verify($password, $users_row['password'])){
+            session_start(); 
+            $_SESSION['username'] = $users_row['username'];
             header("location: welcome.php?success=1");
         }else{
             header("location: login.php?error=2");
