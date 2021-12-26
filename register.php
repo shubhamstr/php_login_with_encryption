@@ -37,7 +37,7 @@
                     <span class="text-danger" style="font-size:15px;"></span>
                 </div>
                 <div class="text-center">
-                    <button id="register" class="btn btn-primary">Register</button>
+                    <button id="register" class="btn btn-primary" name="register">Register</button>
                 </div>
             </form>
         </div>
@@ -92,6 +92,14 @@
 
                 if(cpassword.val().length == 0){
                     var err = '*Enter Confirm Password';
+                    cpassword.parent('div').find('span').text(err);
+                }else{
+                    cpassword.parent('div').find('span').text("");
+                }
+
+                
+                if(cpassword.val() == password.val()){
+                    var err = '*Password does not match..!!';
                     cpassword.parent('div').find('span').text(err);
                 }else{
                     cpassword.parent('div').find('span').text("");
