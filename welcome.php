@@ -8,14 +8,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome <?php echo $_SESSION['username']?></title>
+    <title>Welcome <?php echo $username?></title>
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center">Welcome <?php echo $_SESSION['username']?></h1>
+        <h1 class="text-center">Welcome <?php echo $username?></h1>
         <div class="text-center">
             <button type="button" class="btn btn-primary" onclick="logout();">Logout</button>
         </div>
@@ -46,7 +46,7 @@ if($_GET['success']== 1){
     ?>
 
 <script type="text/javascript">
-swal("DONE!", "Welcome  <?php echo $_SESSION['username']?>", "success");
+swal("DONE!", "Welcome  <?php echo $username?>", "success");
 </script>
 <?php
 }
