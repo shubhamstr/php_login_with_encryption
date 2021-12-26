@@ -21,7 +21,7 @@
                     <span class="text-danger" style="font-size:15px;"></span>
                 </div>
                 <div class="text-center">
-                    <input type="hidden" name="reset">
+                    <input type="hidden" name="forgot_pass">
                     <p>Go Back <a href="login.php">Login Page</a> </p>
                     <input type="button" value="Get Reset Link" class="btn btn-primary" id="reset">
                 </div>

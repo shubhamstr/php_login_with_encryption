@@ -55,7 +55,7 @@ if(isset($_POST['login'])){
 
 
 
-if(isset($_POST['reset'])){
+if(isset($_POST['forgot_pass'])){
     $email = $_POST['email'];
 
     $url1 = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
