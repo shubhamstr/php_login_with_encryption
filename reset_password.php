@@ -1,3 +1,24 @@
+<?php
+if(isset($_GET['email'])){
+    include 'config.php';
+    $email = $_GET['email'];
+    $users_sql = "SELECT * FROM `users` WHERE `email`='$email'";
+    $users_result = mysqli_query($con,$users_sql);
+    $users_count = mysqli_num_rows($users_result);
+    $users_row = mysqli_fetch_array($users_result);
+    if($users_count==0){
+        header('location: login.php');
+    }else{
+        session_start(); 
+        $_SESSION['username'] = $users_row['username'];
+    }
+}else if(isset($_GET['reset_pass'])){
+    include './session.php'; 
+}else{
+    header('location: login.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,6 +94,19 @@
             });
         });
     </script>
+<?php
+
+$url1 = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
+
+if(!isset($_GET['reset_pass'])){
+?>
+    <script>
+        var url1 = '<?php echo $url1; ?>';
+        var url2 = url1+"?email=<?php echo $_GET['email']; ?>&reset_pass";
+        console.log(url2);
+        window.open(url2, '_self');
+    </script>
+<?php } ?>
 
 
 
