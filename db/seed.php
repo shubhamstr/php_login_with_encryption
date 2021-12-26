@@ -16,6 +16,12 @@ if($users_result2){
     echo "TABLE users Created"."<br>";
 }
 
+$users_sql3 = "ALTER TABLE `users` ADD UNIQUE(`email`);";
+$users_result3 = mysqli_query($con,$users_sql3);
+if($users_result3){
+    echo "TABLE users Updated"."<br>";
+}
+
                 
 
 
