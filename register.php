@@ -59,6 +59,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -97,6 +98,42 @@
             });
         });
     </script>
+
+
+<?php 
+if(isset($_GET['error'])){
+if($_GET['error']== 1){
+    ?>
+
+<script type="text/javascript">
+swal("OOPS!", "User Already Exists", "error");
+</script>
+<?php
+}else if($_GET['error']== 2){
+    ?>
+<script type="text/javascript">
+swal("OOPS!", "Something Error!!", "error");
+</script>
+<?php
+}
+
+}
+?>
+
+
+<?php 
+if(isset($_GET['insert'])){
+if($_GET['insert']== 1){
+    ?>
+
+<script type="text/javascript">
+swal("DONE!", "User Registered Successfully", "success");
+</script>
+<?php
+}
+
+}
+?>
 </body>
 
 </html>
