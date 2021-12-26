@@ -58,6 +58,8 @@ if(isset($_POST['login'])){
 if(isset($_POST['reset'])){
     $email = $_POST['email'];
 
+    $url1 = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
+    $url2 = str_replace("back.php","reset_password.php",$url1);
     
     $users_sql = "SELECT * FROM `users` WHERE `email`='$email'";
     $users_result = mysqli_query($con,$users_sql);
@@ -75,7 +77,7 @@ if(isset($_POST['reset'])){
         </head>
         <body>
         <p>click to reset your password!</p>
-        <a href="reset_password.php?email='.$email.'">Reset Password</a>
+        <a href="'.$url2.'?email='.$email.'">Reset Password</a>
         </body>
         </html>
         ';
