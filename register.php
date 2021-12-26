@@ -18,26 +18,26 @@
             <form action="./back.php" method="post" id="userform">
                 <div class="mb-3 mt-3">
                     <label for="username" class="form-label">Username:</label>
-                    <input type="username" class="form-control" id="username" placeholder="Enter Username" name="username" autocomplete="off">
+                    <input type="text" class="form-control" id="username" placeholder="Enter Username" name="username">
                     <span class="text-danger" style="font-size:15px;"></span>
                 </div>
                 <div class="mb-3 mt-3">
                     <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" autocomplete="off">
+                    <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email">
                     <span class="text-danger" style="font-size:15px;"></span>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password:</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password" autocomplete="off">
+                    <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password">
                     <span class="text-danger" style="font-size:15px;"></span>
                 </div>
                 <div class="mb-3">
                     <label for="cpassword" class="form-label">Confirm Password:</label>
-                    <input type="password" class="form-control" id="cpassword" placeholder="Enter Password" name="cpassword" autocomplete="off">
+                    <input type="password" class="form-control" id="cpassword" placeholder="Enter Password" name="cpassword">
                     <span class="text-danger" style="font-size:15px;"></span>
                 </div>
                 <div class="text-center">
-                    <button id="register" class="btn btn-primary" name="register">Register</button>
+                    <input type="button" value="Register" class="btn btn-primary" id="register" name="register">
                 </div>
             </form>
         </div>
@@ -72,40 +72,27 @@
                 if(username.val().length == 0){
                     var err = '*Enter Username';
                     username.parent('div').find('span').text(err);
-                }else{
-                    username.parent('div').find('span').text("");
-                }
-
-                if(email.val().length == 0){
+                }else if(email.val().length == 0){
                     var err = '*Enter Email';
                     email.parent('div').find('span').text(err);
-                }else{
-                    email.parent('div').find('span').text("");
-                }
-
-                if(password.val().length == 0){
+                }else if(password.val().length == 0){
                     var err = '*Enter Password';
                     password.parent('div').find('span').text(err);
-                }else{
-                    password.parent('div').find('span').text("");
-                }
-
-                if(cpassword.val().length == 0){
+                }else if(cpassword.val().length == 0){
                     var err = '*Enter Confirm Password';
                     cpassword.parent('div').find('span').text(err);
-                }else{
-                    cpassword.parent('div').find('span').text("");
-                }
-
-                
-                if(cpassword.val() == password.val()){
+                }else if(cpassword.val() != password.val()){
                     var err = '*Password does not match..!!';
                     cpassword.parent('div').find('span').text(err);
                 }else{
+                    username.parent('div').find('span').text("");
+                    email.parent('div').find('span').text("");
+                    password.parent('div').find('span').text("");
                     cpassword.parent('div').find('span').text("");
+                    $('#userform').submit();
                 }
+                console.log(err);
 
-                $('#userform').submit();
             });
         });
     </script>
