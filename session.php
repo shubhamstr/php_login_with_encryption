@@ -11,9 +11,9 @@
       header('location: login.php');
     }
     $users_row = mysqli_fetch_array($users_result);
-    $user_id = $row['id'];
-    $username = $row['username'];
-    $email = $row['email'];
+    $user_id = $users_row['id'];
+    $username = $users_row['username'];
+    $email = $users_row['email'];
     
   }
   else{
