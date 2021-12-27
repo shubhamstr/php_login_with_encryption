@@ -2,9 +2,9 @@
   session_start();
   include 'config.php';
   
-  if(isset($_SESSION['username'])){
-    $username = $_SESSION['username'];
-    $users_sql = "SELECT * FROM `users` WHERE `username`='$username'";
+  if(isset($_SESSION['login_token'])){
+    $login_token = $_SESSION['login_token'];
+    $users_sql = "SELECT * FROM `users` WHERE `token`='$login_token'";
     $users_result = mysqli_query($con,$users_sql);
     $users_count = mysqli_num_rows($users_result);
     if($users_count==0){

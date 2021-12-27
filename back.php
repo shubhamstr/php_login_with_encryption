@@ -34,7 +34,9 @@ if(isset($_POST['register'])){
 if(isset($_POST['login'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
-
+    
+    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    $token = substr(str_shuffle($chars),0,10);
     
     $users_sql = "SELECT * FROM `users` WHERE `email`='$email'";
     $users_result = mysqli_query($con,$users_sql);
@@ -42,8 +44,10 @@ if(isset($_POST['login'])){
     $users_row = mysqli_fetch_array($users_result);
     if($users_count > 0){
         if(password_verify($password, $users_row['password'])){
+            $users_sql2 = "UPDATE `users` SET `token`='$token' WHERE `email`='$email'";
+            $users_result2 = mysqli_query($con,$users_sql2);
             session_start(); 
-            $_SESSION['username'] = $users_row['username'];
+            $_SESSION['login_token'] = $users_row['token'];
             header("location: welcome.php?success=1");
         }else{
             header("location: login.php?error=2");
