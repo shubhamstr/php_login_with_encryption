@@ -47,7 +47,7 @@ if(isset($_POST['login'])){
             $users_sql2 = "UPDATE `users` SET `token`='$token' WHERE `email`='$email'";
             $users_result2 = mysqli_query($con,$users_sql2);
             session_start(); 
-            $_SESSION['login_token'] = $users_row['token'];
+            $_SESSION['login_token'] = $token;
             header("location: welcome.php?success=1");
         }else{
             header("location: login.php?error=2");
