@@ -7,7 +7,6 @@ if(isset($_POST['register'])){
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $cpassword = $_POST['cpassword'];
 
     
     $users_sql = "SELECT * FROM `users` WHERE `email`='$email'";
@@ -19,7 +18,7 @@ if(isset($_POST['register'])){
     
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     
-        $users_sql = "INSERT INTO `users`(`username`,`email`,`password`,`cpassword`)VALUES('$username','$email','$hashed_password','$hashed_password')";
+        $users_sql = "INSERT INTO `users`(`username`,`email`,`password`)VALUES('$username','$email','$hashed_password')";
         $users_result = mysqli_query($con,$users_sql);
         if($users_result){
             header("location: register.php?insert=1");
@@ -115,11 +114,10 @@ if(isset($_POST['reset_pass'])){
     $email = $_POST['email'];
     $token = $_POST['token'];
     $password = $_POST['password'];
-    $cpassword = $_POST['cpassword'];
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     
-    $users_sql = "UPDATE `users` SET `password`='$hashed_password', `cpassword`='$hashed_password' WHERE `email`='$email'";
+    $users_sql = "UPDATE `users` SET `password`='$hashed_password' WHERE `email`='$email'";
     $users_result = mysqli_query($con,$users_sql);
     if($users_result){
         header("location: reset_password.php?email=$email&token=$token&success=1");
