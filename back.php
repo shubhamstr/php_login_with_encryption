@@ -61,6 +61,9 @@ if(isset($_POST['forgot_pass'])){
 
     $url1 = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
     $url2 = str_replace("back.php","reset_password.php",$url1);
+
+    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    $token = substr(str_shuffle($chars),0,10);
     
     $users_sql = "SELECT * FROM `users` WHERE `email`='$email'";
     $users_result = mysqli_query($con,$users_sql);
@@ -78,7 +81,7 @@ if(isset($_POST['forgot_pass'])){
         </head>
         <body>
         <p>click to reset your password!</p>
-        <a href="'.$url2.'?email='.$email.'">Reset Password</a>
+        <a href="'.$url2.'?email='.$email.'&token='.$token.'">Reset Password</a>
         </body>
         </html>
         ';
@@ -92,6 +95,8 @@ if(isset($_POST['forgot_pass'])){
         $headers .= 'Cc: '.SEND_EMAIL_CC . "\r\n";
 
         if(mail($to,$subject,$message,$headers)){
+            $users_sql2 = "UPDATE `users` SET `token`='$token' WHERE `email`='$email'";
+            $users_result2 = mysqli_query($con,$users_sql2);
             header("location: forgot_password.php?success=1&mailsent");
         }else{
             header("location: forgot_password.php?success=1&mailerr");
@@ -104,6 +109,7 @@ if(isset($_POST['forgot_pass'])){
 
 if(isset($_POST['reset_pass'])){
     $email = $_POST['email'];
+    $token = $_POST['token'];
     $password = $_POST['password'];
     $cpassword = $_POST['cpassword'];
 
@@ -112,9 +118,9 @@ if(isset($_POST['reset_pass'])){
     $users_sql = "UPDATE `users` SET `password`='$hashed_password', `cpassword`='$hashed_password' WHERE `email`='$email'";
     $users_result = mysqli_query($con,$users_sql);
     if($users_result){
-        header("location: reset_password.php?email=$email&success=1");
+        header("location: reset_password.php?email=$email&token=$token&success=1");
     }else{
-        header("location: reset_password.php?email=$email&error=1");
+        header("location: reset_password.php?email=$email&token=$token&error=1");
     }
                     
 }

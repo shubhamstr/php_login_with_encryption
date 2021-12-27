@@ -1,8 +1,9 @@
 <?php
-if(isset($_GET['email']) || isset($_GET['success']) || isset($_GET['error'])){
+if((isset($_GET['email']) && isset($_GET['token']))){
     include 'config.php';
     $email = $_GET['email'];
-    $users_sql = "SELECT * FROM `users` WHERE `email`='$email'";
+    $token = $_GET['token'];
+    $users_sql = "SELECT * FROM `users` WHERE `email`='$email' AND `token`='$token'";
     $users_result = mysqli_query($con,$users_sql);
     $users_count = mysqli_num_rows($users_result);
     $users_row = mysqli_fetch_array($users_result);
@@ -41,6 +42,7 @@ if(isset($_GET['email']) || isset($_GET['success']) || isset($_GET['error'])){
                     <span class="text-danger" style="font-size:15px;"></span>
                 </div>
                 <div class="text-center">
+                    <input type="hidden" name="token" value="<?php echo $_GET['token']; ?>">
                     <input type="hidden" name="email" value="<?php echo $_GET['email']; ?>">
                     <input type="hidden" name="reset_pass">
                     <p>Go Back <a href="login.php">Login Page</a> </p>
