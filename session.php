@@ -8,8 +8,8 @@
     $users_result = mysqli_query($con,$users_sql);
     $users_count = mysqli_num_rows($users_result);
     if($users_count==0){
-      header('location: login.php');
       session_destroy();
+      header('location: login.php');
     }
     $users_row = mysqli_fetch_array($users_result);
     $user_id = $users_row['id'];
